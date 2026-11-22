@@ -3,9 +3,10 @@ from odoo import fields, models
 class PrestamoEquipo(models.Model):
     _name = "prestamo.equipo"
     _description = "Equipo para préstamo"
-  
+
     name = fields.Char(string="Nombre", required=True)
     codigo = fields.Char(string="Código de inventario", required=True, copy=False)
+
     categoria = fields.Selection(
         [
             ("laptop", "Laptop"),
@@ -17,6 +18,7 @@ class PrestamoEquipo(models.Model):
         required=True,
         default="laptop",
     )
+
     estado = fields.Selection(
         [
             ("disponible", "Disponible"),
@@ -27,5 +29,17 @@ class PrestamoEquipo(models.Model):
         required=True,
         default="disponible",
     )
+
     notas = fields.Text(string="Notas")
     active = fields.Boolean(string="Activo", default=True)
+
+    veces_prestado = fields.Integer(
+        string="Veces prestado",
+        compute="_compute_veces_prestado",
+    )
+
+    def _compute_veces_prestado(self):
+        for equipo in self:
+            equipo.veces_prestado = self.env["prestamo.linea"].search_count([
+                ("equipo_id", "=", equipo.id)
+            ])
