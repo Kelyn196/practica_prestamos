@@ -50,3 +50,12 @@ R: Porque el filtro solamente muestra los equipos disponibles al momento de sele
 2. ¿En qué momento se ejecuta un método con @api.constrains? ¿Y la validación de action_prestar?
 
 R: El método @api.constrains se ejecuta cuando se crean o modifican los campos indicados, para comprobar que los datos cumplan las reglas establecidas. La validación de action_prestar se ejecuta cuando el usuario presiona el botón Prestar.
+
+Paso 6. Contacto, kanban y búsqueda
+1. ¿Qué pasa si arrastra una tarjeta del kanban a otra columna? ¿Por qué?
+
+R: Al arrastrar una tarjeta a otra columna, el equipo cambia de estado automáticamente. Esto sucede porque el kanban está agrupado por el campo estado, y Odoo permite modificar ese campo al mover las tarjetas entre columnas.
+
+2. El campo prestamo_ids se agregó a res.partner. ¿Se crea una columna nueva en la tabla de contactos? Explique.
+
+R: No, porque prestamo_ids es un campo One2many que permite consultar los préstamos relacionados con un contacto. La relación se guarda mediante el campo partner_id del modelo prestamo.prestamo, que es el que almacena la referencia al contacto.
