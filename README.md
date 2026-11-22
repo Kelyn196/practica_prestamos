@@ -15,8 +15,18 @@ Paso 2. Registro de préstamos
 
 1. Este modelo usa _name y _inherit al mismo tiempo. ¿Qué hace cada uno aquí?
 
-Respuesta: _name define el nombre del nuevo modelo que se está creando, mientras que _inherit permite heredar las funciones de mail.thread, como el historial de mensajes y los cambios realizados en el préstamo.
+R: _name define el nombre del nuevo modelo que se está creando, mientras que _inherit permite heredar las funciones de mail.thread, como el historial de mensajes y los cambios realizados en el préstamo.
 
 2. ¿Qué hace tracking=True en el campo state? Lo verá funcionar en el paso 4.
 
-Respuesta: Permite registrar los cambios realizados en el estado del préstamo en el chatter, mostrando cuándo cambia de Borrador a Prestado o a Devuelto.
+R: Permite registrar los cambios realizados en el estado del préstamo en el chatter, mostrando cuándo cambia de Borrador a Prestado o a Devuelto.
+
+Paso 3. Equipos del préstamo
+
+1. En fields.One2many("prestamo.linea", "prestamo_id"), ¿qué indica cada parámetro?
+
+R: El primer parámetro, "prestamo.linea", indica el modelo relacionado. El segundo, "prestamo_id", indica el campo que conecta cada línea con su préstamo. Esto permite que un préstamo tenga varios equipos asociados.
+
+2. ¿Qué pasa con las líneas cuando se borra un préstamo? ¿Qué parte del código lo define?
+
+R: Cuando se elimina un préstamo, también se eliminan automáticamente las líneas relacionadas con él. Esto lo define ondelete="cascade" en el campo prestamo_id.
