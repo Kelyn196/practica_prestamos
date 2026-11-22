@@ -10,3 +10,13 @@ R: Cuando se desmarca el campo Activo, el equipo deja de aparecer en las listas 
 2. ¿Para qué sirve copy=False en el campo codigo?
 
 R: Sirve para evitar que el código de inventario se copie cuando se duplica un equipo, permitiendo que cada equipo tenga un código único.
+
+Paso 2. Registro de préstamos
+
+1. Este modelo usa _name y _inherit al mismo tiempo. ¿Qué hace cada uno aquí?
+
+Respuesta: _name define el nombre del nuevo modelo que se está creando, mientras que _inherit permite heredar las funciones de mail.thread, como el historial de mensajes y los cambios realizados en el préstamo.
+
+2. ¿Qué hace tracking=True en el campo state? Lo verá funcionar en el paso 4.
+
+Respuesta: Permite registrar los cambios realizados en el estado del préstamo en el chatter, mostrando cuándo cambia de Borrador a Prestado o a Devuelto.
